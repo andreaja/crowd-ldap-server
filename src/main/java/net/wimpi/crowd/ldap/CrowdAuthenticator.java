@@ -38,14 +38,14 @@ public class CrowdAuthenticator extends AbstractAuthenticator {
       User u = m_CrowdClient.authenticateUser(user, pass);
       if(u == null) {
         log.debug(c_ResourceBundle.getString("crowdauthenticator.authentication.failed") + "()::Authentication failed");
-        return LdapPrincipal.ANONYMOUS;
+        return null;
       } else {
         log.debug(MessageFormat.format(c_ResourceBundle.getString("crowdauthenticator.user"), u.toString()));
         return new LdapPrincipal(ctx.getDn(), AuthenticationLevel.SIMPLE);
       }
     } catch (Exception ex) {
       log.debug(c_ResourceBundle.getString("crowdauthenticator.authentication.failed") + "()::Authentication failed");
-      return LdapPrincipal.ANONYMOUS;
+      return null;
     }
   }//authenticate
 
